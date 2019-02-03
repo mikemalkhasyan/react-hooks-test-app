@@ -1,4 +1,17 @@
-console.warn('I am a Star Trek nerd');
-console.log('So through out this tutorial, you will see a lot of Star Trek quotes');
-console.log('Starting now');
-console.log("Compassion: that’s the one thing no machine ever had. Maybe it’s the one thing that keeps men ahead of them. -Dr McCoy");
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const App = () => {
+    return (
+        <div>
+            <p>
+                We are a most promising species, Mr. Spock, as predators go. Did you know that? I frequently
+                have my doubts. I dont. Not any more. And maybe in a thousand years or so, we will be able
+                to prove it.
+            </p>
+            <p>- Captain Kirk</p>
+        </div>
+    );
+};
+
+ReactDOM.render(<App />, document.getElementById('app'));
