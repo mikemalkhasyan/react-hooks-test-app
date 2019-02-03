@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
@@ -5,10 +6,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const APP_DIR = path.resolve(__dirname, '../src');
 
 module.exports = env => {
     const { VERSION, PLATFORM } = env;
     return merge([{
+        entry: ['@babel/polyfill', APP_DIR],
         module: {
             rules: [
                 {
