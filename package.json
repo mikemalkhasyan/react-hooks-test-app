@@ -36,7 +36,7 @@
     "webpack-visualizer-plugin": "^0.1.11"
   },
   "dependencies": {
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react": "next",
+    "react-dom": "next"
   }
 }
