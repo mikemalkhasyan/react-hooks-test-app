@@ -1,10 +1,13 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 module.exports = env => {
+    const { VERSION, PLATFORM } = env;
     return merge([{
         module: {
             rules: [
@@ -17,7 +20,11 @@ module.exports = env => {
                 },
                 {
                     test: /\.scss$/,
-                    use: ['style-loader', 'css-loader', 'sass-loader']  // read this from RIGHT to LEFT
+                    use: [
+                        PLATFORM === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+                        'css-loader',
+                        'sass-loader'
+                    ]  // read this from RIGHT to LEFT
                 }
             ]
         },
@@ -26,6 +33,7 @@ module.exports = env => {
                 template: './src/index.html',
                 filename: './index.html'
             }),
+            new CopyWebpackPlugin([ {'from': 'src/static'} ]),
             new webpack.DefinePlugin({
                 'process.env.VERSION': JSON.stringify(env.VERSION),
                 'process.env.PLATFORM': JSON.stringify(env.PLATFORM),
